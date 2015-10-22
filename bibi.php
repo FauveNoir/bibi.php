@@ -93,3 +93,19 @@ function dec2bibi($givenDecimalNumber)
 
 	return $intermediateNumber;
 }
+
+
+function alpha2bibi($givenDigitSuit)
+{
+	$bibinariesedNumber=strtoupper($givenDigitSuit);
+
+	for ($currentDecDigit = 0; $currentDecDigit <= 15; $currentDecDigit++) {
+		$currentBibiDigitChar=$GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
+		$currentBibiDigitName=$GLOBALS['litt2dec2bibi'][$currentDecDigit]['litteral'];
+
+		$bibinariesedNumber=str_replace($currentBibiDigitName, $currentBibiDigitChar ,$bibinariesedNumber);
+	}
+
+
+	return $bibinariesedNumber;
+}
