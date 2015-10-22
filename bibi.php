@@ -1,9 +1,9 @@
 <?php
+
 /**
  * bibi — Manipulate bibi numbers from Deximalisation Project
- * 
- * This file is part of the Deximalisation Project.
  *
+ * This file is part of the Deximalisation Project.
  *
  * @package   bibi
  * @author    Fauve <Fauve DOT ordinator AT taniere DOT info>
@@ -24,6 +24,7 @@ class constructNewCharacter
 	public $litteral;
 	public $decimal;
 	public $character;
+
 	function __construct ($litteral, $decimal, $character)
 	{
 		$this->litteral  = $litteral;
@@ -49,9 +50,7 @@ $litt2dec2bibi = [
 	new constructNewCharacter("DA", 13, "󰀍"),
 	new constructNewCharacter("DE", 14, "󰀎"),
 	new constructNewCharacter("DI", 15, "󰀏"),
-	]
-
-
+];
 
 function hex2bibi($givenHexadecimalNumber)
 {
