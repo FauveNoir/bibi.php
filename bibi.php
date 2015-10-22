@@ -84,7 +84,3 @@ function dec2bibi($givenDecimalNumber)
 
 	return $intermediateNumber;
 }
-
-?>
-
-
