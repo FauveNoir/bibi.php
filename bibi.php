@@ -75,7 +75,8 @@ function hex2bibi($givenHexadecimalNumber)
 {
 	$bibinariesedNumber=strtolower($givenHexadecimalNumber);
 
-	for ($currentDecDigit = 0; $currentDecDigit <= 15; $currentDecDigit++) {
+	for ($currentDecDigit = 0; $currentDecDigit <= 15; $currentDecDigit++)
+	{
 		$currentHexDigit=dechex($currentDecDigit);
 		$currentBibiChar=$GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
 
@@ -99,7 +100,8 @@ function alpha2bibi($givenDigitSuit)
 {
 	$bibinariesedNumber=strtoupper($givenDigitSuit);
 
-	for ($currentDecDigit = 0; $currentDecDigit <= 15; $currentDecDigit++) {
+	for ($currentDecDigit = 0; $currentDecDigit <= 15; $currentDecDigit++)
+	{
 		$currentBibiDigitChar=$GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
 		$currentBibiDigitName=$GLOBALS['litt2dec2bibi'][$currentDecDigit]['litteral'];
 
@@ -108,4 +110,89 @@ function alpha2bibi($givenDigitSuit)
 
 
 	return $bibinariesedNumber;
+}
+
+
+function hex2fullLitteral($hexNumber)
+{
+	$hexNumber=str_replace(" ","",$hexNumber);
+	$lengtOfNumber=iconv_strlen($hexNumber);
+	$fullLitteral="";
+
+	for ($currentRing=$lengtOfNumber ; $currentRing > 0 ; $currentRing--)
+	{
+		$reverseCurrentRing=$lengtOfNumber-$currentRing;
+		if ($currentRing == 13)
+		{
+			$currentBigMagnitude="mixiard";
+		}
+		elseif ($currentRing == 9)
+		{
+			$currentBigMagnitude="mixion";
+		}
+		elseif ($currentRing == 5)
+		{
+			$currentBigMagnitude="manix";
+		}
+		else
+		{
+			$currentBigMagnitude="";
+		}
+
+		switch ($currentRing % 4)
+		{
+			case 0:
+				$currentMagnitude="mix";
+				break;
+
+			case 1:
+				$currentMagnitude="";
+				break;
+
+			case 2:
+				$currentMagnitude="dex";
+				break;
+
+			case 3:
+				$currentMagnitude="cenze";
+				break;
+
+			case 4:
+				$currentMagnitude="mix";
+				break;
+		}
+
+		if ($currentBigMagnitude != "")
+		{
+			$bigMagnitudeSeparator="-";
+		}
+		else
+		{
+			$bigMagnitudeSeparator="";
+		}
+
+		if ($currentMagnitude != "")
+		{
+			$magnitudeSeparator="-";
+		}
+		else
+		{
+			$magnitudeSeparator="";
+		}
+
+		if ( ($currentMagnitude != "") || ($currentBigMagnitude != "") )
+		{
+			$digitSeparator="-";
+		}
+		else
+		{
+			$digitSeparator="";
+		}
+
+		$currentBibiDigitName=strtolower($GLOBALS['litt2dec2bibi'][hexdec(substr($hexNumber, $reverseCurrentRing, 1))]['litteral']);
+
+		$fullLitteral=$fullLitteral . $currentBibiDigitName . $digitSeparator . $currentMagnitude . $magnitudeSeparator . $currentBigMagnitude . $bigMagnitudeSeparator;
+	}
+
+	return $fullLitteral;
 }
