@@ -32,7 +32,6 @@ $decimal2bibinaryCorespondance[15] = "DI";
 
 
 
-
 class constructNewCharacter
 {
 	public $litteral;
@@ -40,23 +39,23 @@ class constructNewCharacter
 	public $character;
 	function __construct ($litteral, $decimal, $character)
 	{
-		$this->litteral = $litteral;
-		$this->decimal = $decimal;
+		$this->litteral  = $litteral;
+		$this->decimal   = $decimal;
 		$this->character = $character;
 	}
 }
 
-$dec2hex2bibi = [
-	new constructNewCharacter("HO", 0, "󰀀"),
-	new constructNewCharacter("HA", 1, "󰀁"),
-	new constructNewCharacter("HE", 2, "󰀂"),
-	new constructNewCharacter("HI", 3, "󰀃"),
-	new constructNewCharacter("BO", 4, "󰀄"),
-	new constructNewCharacter("BA", 5, "󰀅"),
-	new constructNewCharacter("BE", 6, "󰀆"),
-	new constructNewCharacter("BI", 7, "󰀇"),
-	new constructNewCharacter("KO", 8, "󰀈"),
-	new constructNewCharacter("KA", 9, "󰀉"),
+$litt2dec2bibi = [
+	new constructNewCharacter("HO",  0, "󰀀"),
+	new constructNewCharacter("HA",  1, "󰀁"),
+	new constructNewCharacter("HE",  2, "󰀂"),
+	new constructNewCharacter("HI",  3, "󰀃"),
+	new constructNewCharacter("BO",  4, "󰀄"),
+	new constructNewCharacter("BA",  5, "󰀅"),
+	new constructNewCharacter("BE",  6, "󰀆"),
+	new constructNewCharacter("BI",  7, "󰀇"),
+	new constructNewCharacter("KO",  8, "󰀈"),
+	new constructNewCharacter("KA",  9, "󰀉"),
 	new constructNewCharacter("KE", 10, "󰀊"),
 	new constructNewCharacter("KI", 11, "󰀋"),
 	new constructNewCharacter("DO", 12, "󰀌"),
@@ -66,14 +65,24 @@ $dec2hex2bibi = [
 	]
 
 
-function hex2bibi($hexadecimalNumber)
+
+function hex2bibi($givenHexadecimalNumber)
 {
-	for ($i = 0; $i <= 15; $i++) {
+	for ($i = 10; $i <= 15; $i++) {
 		$j=dechex($i);
-		str_replace($j,$decimal2bibinaryCorespondance[$i],$hexadecimalNumber);
+		//str_replace($j,$decimal2bibinaryCorespondance[$i],$hexadecimalNumber);
+		str_replace($j,$litt2dec2bibi["character"][$i],$givenHexadecimalNumber);
 	}
 
-	return $hexadecimalNumber;
+	return $givenHexadecimalNumber;
+}
+
+
+function dec2bibi($givenDecimalNumber)
+{
+	$intermediateNumber=hex2bibi(dechex($givenDecimalNumber));
+
+	return $intermediateNumber;
 }
 
 ?>
