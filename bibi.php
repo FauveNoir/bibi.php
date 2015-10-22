@@ -87,6 +87,21 @@ function hex2bibi($givenHexadecimalNumber)
 	return $bibinariesedNumber;
 }
 
+function bibi2hex($givenBibiNumber)
+{
+	$hexadecimalisedNumber=strtolower($givenBibiNumber);
+
+	for ($currentDecDigit = 0; $currentDecDigit <= 15; $currentDecDigit++)
+	{
+		$currentHexDigit=dechex($currentDecDigit);
+		$currentBibiChar=$GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
+
+		$hexadecimalisedNumber=str_replace($currentBibiChar, $currentHexDigit, $hexadecimalisedNumber);
+	}
+
+
+	return $hexadecimalisedNumber;
+}
 
 function dec2bibi($givenDecimalNumber)
 {
@@ -191,8 +206,26 @@ function hex2fullLitteral($hexNumber)
 
 		$currentBibiDigitName=strtolower($GLOBALS['litt2dec2bibi'][hexdec(substr($hexNumber, $reverseCurrentRing, 1))]['litteral']);
 
+		if ($currentBibiDigitName == "ho")
+		{
+			$currentBibiDigitName="";
+			$digitSeparator="";
+			$currentMagnitude="";
+			$magnitudeSeparator="";
+		}
+
 		$fullLitteral=$fullLitteral . $currentBibiDigitName . $digitSeparator . $currentMagnitude . $magnitudeSeparator . $currentBigMagnitude . $bigMagnitudeSeparator;
 	}
 
 	return $fullLitteral;
+}
+
+function bibi2fullLitteral($bibiNumber)
+{
+	return hex2fullLitteral(bibi2hex($bibiNumber));
+}
+
+function dec2fullLitteral($decNumber)
+{
+	return hex2fullLitteral(dechex($decNumber));
 }
