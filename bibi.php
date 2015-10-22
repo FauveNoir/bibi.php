@@ -12,25 +12,12 @@
  *
  */
 
-$decimal2bibinaryCorespondance[0] = "HO";
-$decimal2bibinaryCorespondance[1] = "HA";
-$decimal2bibinaryCorespondance[2] = "HE";
-$decimal2bibinaryCorespondance[3] = "HI";
-$decimal2bibinaryCorespondance[4] = "BO";
-$decimal2bibinaryCorespondance[5] = "BA";
-$decimal2bibinaryCorespondance[6] = "BE";
-$decimal2bibinaryCorespondance[7] = "BI";
-$decimal2bibinaryCorespondance[8] = "KO";
-$decimal2bibinaryCorespondance[9] = "KA";
-$decimal2bibinaryCorespondance[10] = "KE";
-$decimal2bibinaryCorespondance[11] = "KI";
-$decimal2bibinaryCorespondance[12] = "DO";
-$decimal2bibinaryCorespondance[13] = "DA";
-$decimal2bibinaryCorespondance[14] = "DE";
-$decimal2bibinaryCorespondance[15] = "DI";
-
-
-
+$decimal2bibinaryCorespondance = [
+    "HO", "HA", "HE", "HI",
+    "BO", "BA", "BE", "BI",
+    "KO", "KA", "KE", "KI",
+    "DO", "DA", "DE", "DI"
+];
 
 class constructNewCharacter
 {
