@@ -54,7 +54,7 @@ $litt2dec2bibi = [
 
 function hex2bibi($givenHexadecimalNumber)
 {
-	for ($i = 10; $i <= 15; $i++) {
+	for ($i = 0; $i <= 15; $i++) {
 		$j=dechex($i);
 		//str_replace($j,$decimal2bibinaryCorrespondence[$i],$hexadecimalNumber);
 		str_replace($j,$litt2dec2bibi["character"][$i],$givenHexadecimalNumber);
