@@ -137,21 +137,24 @@ function hex2fullLitteral($hexNumber)
 	for ($currentRing=$lengtOfNumber ; $currentRing > 0 ; $currentRing--)
 	{
 		$reverseCurrentRing=$lengtOfNumber-$currentRing;
-		if ($currentRing == 13)
+
+		switch ($currentRing)
 		{
+			case 13:
 			$currentBigMagnitude="mixiard";
-		}
-		elseif ($currentRing == 9)
-		{
+			break;
+
+			case 9:
 			$currentBigMagnitude="mixion";
-		}
-		elseif ($currentRing == 5)
-		{
+			break;
+
+			case 5:
 			$currentBigMagnitude="manix";
-		}
-		else
-		{
+			break;
+
+			default:
 			$currentBigMagnitude="";
+			break;
 		}
 
 		switch ($currentRing % 4)
@@ -171,28 +174,28 @@ function hex2fullLitteral($hexNumber)
 			case 3:
 				$currentMagnitude="cenze";
 				break;
+		}
 
-			case 4:
-				$currentMagnitude="mix";
+		switch ($currentBigMagnitude)
+		{
+			case "":
+				$bigMagnitudeSeparator="";
+				break;
+
+			default:
+				$bigMagnitudeSeparator="-";
 				break;
 		}
 
-		if ($currentBigMagnitude != "")
+		switch ($currentMagnitude)
 		{
-			$bigMagnitudeSeparator="-";
-		}
-		else
-		{
-			$bigMagnitudeSeparator="";
-		}
+			case "":
+				$magnitudeSeparator="";
+				break;
 
-		if ($currentMagnitude != "")
-		{
-			$magnitudeSeparator="-";
-		}
-		else
-		{
-			$magnitudeSeparator="";
+			default:
+				$magnitudeSeparator="-";
+				break;
 		}
 
 		if ( ($currentMagnitude != "") || ($currentBigMagnitude != "") )
@@ -212,6 +215,7 @@ function hex2fullLitteral($hexNumber)
 			$digitSeparator="";
 			$currentMagnitude="";
 			$magnitudeSeparator="";
+			$bigMagnitudeSeparator="";
 		}
 
 		$fullLitteral=$fullLitteral . $currentBibiDigitName . $digitSeparator . $currentMagnitude . $magnitudeSeparator . $currentBigMagnitude . $bigMagnitudeSeparator;
