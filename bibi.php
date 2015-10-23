@@ -19,7 +19,7 @@ $decimal2bibinaryCorrespondence = [
     "DO", "DA", "DE", "DI"
 ];
 
-$minimOnSecond=(16*16*16*16)/(24*60*60);
+$minimOnSecond = (16*16*16*16)/(24*60*60);
 
 //class constructNewCharacter
 //{
@@ -75,14 +75,14 @@ $litt2dec2bibi = [
 
 function hex2bibi($givenHexadecimalNumber)
 {
-	$bibinariesedNumber=strtolower($givenHexadecimalNumber);
+	$bibinariesedNumber = strtolower($givenHexadecimalNumber);
 
 	for ($currentDecDigit = 0; $currentDecDigit <= 15; $currentDecDigit++)
 	{
-		$currentHexDigit=dechex($currentDecDigit);
-		$currentBibiChar=$GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
+		$currentHexDigit = dechex($currentDecDigit);
+		$currentBibiChar = $GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
 
-		$bibinariesedNumber=str_replace($currentHexDigit, $currentBibiChar ,$bibinariesedNumber);
+		$bibinariesedNumber = str_replace($currentHexDigit, $currentBibiChar ,$bibinariesedNumber);
 	}
 
 
@@ -91,14 +91,14 @@ function hex2bibi($givenHexadecimalNumber)
 
 function bibi2hex($givenBibiNumber)
 {
-	$hexadecimalisedNumber=strtolower($givenBibiNumber);
+	$hexadecimalisedNumber = strtolower($givenBibiNumber);
 
 	for ($currentDecDigit = 0; $currentDecDigit <= 15; $currentDecDigit++)
 	{
-		$currentHexDigit=dechex($currentDecDigit);
-		$currentBibiChar=$GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
+		$currentHexDigit = dechex($currentDecDigit);
+		$currentBibiChar = $GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
 
-		$hexadecimalisedNumber=str_replace($currentBibiChar, $currentHexDigit, $hexadecimalisedNumber);
+		$hexadecimalisedNumber = str_replace($currentBibiChar, $currentHexDigit, $hexadecimalisedNumber);
 	}
 
 
@@ -107,7 +107,7 @@ function bibi2hex($givenBibiNumber)
 
 function dec2bibi($givenDecimalNumber)
 {
-	$intermediateNumber=hex2bibi(dechex($givenDecimalNumber));
+	$intermediateNumber = hex2bibi(dechex($givenDecimalNumber));
 
 	return $intermediateNumber;
 }
@@ -115,14 +115,14 @@ function dec2bibi($givenDecimalNumber)
 
 function alpha2bibi($givenDigitSuit)
 {
-	$bibinariesedNumber=strtoupper($givenDigitSuit);
+	$bibinariesedNumber = strtoupper($givenDigitSuit);
 
 	for ($currentDecDigit = 0; $currentDecDigit <= 15; $currentDecDigit++)
 	{
-		$currentBibiDigitChar=$GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
-		$currentBibiDigitName=$GLOBALS['litt2dec2bibi'][$currentDecDigit]['litteral'];
+		$currentBibiDigitChar = $GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
+		$currentBibiDigitName = $GLOBALS['litt2dec2bibi'][$currentDecDigit]['litteral'];
 
-		$bibinariesedNumber=str_replace($currentBibiDigitName, $currentBibiDigitChar ,$bibinariesedNumber);
+		$bibinariesedNumber = str_replace($currentBibiDigitName, $currentBibiDigitChar ,$bibinariesedNumber);
 	}
 
 
@@ -132,95 +132,95 @@ function alpha2bibi($givenDigitSuit)
 
 function hex2fullLitteral($hexNumber)
 {
-	$hexNumber=str_replace(" ","",$hexNumber);
-	$lengtOfNumber=iconv_strlen($hexNumber);
-	$fullLitteral="";
+	$hexNumber = str_replace(" ","",$hexNumber);
+	$lengtOfNumber = iconv_strlen($hexNumber);
+	$fullLitteral = "";
 
-	for ($currentRing=$lengtOfNumber ; $currentRing > 0 ; $currentRing--)
+	for ($currentRing = $lengtOfNumber ; $currentRing > 0 ; $currentRing--)
 	{
-		$reverseCurrentRing=$lengtOfNumber-$currentRing;
+		$reverseCurrentRing = $lengtOfNumber-$currentRing;
 
 		switch ($currentRing)
 		{
 			case 13:
-			$currentBigMagnitude="mixiard";
+			$currentBigMagnitude = "mixiard";
 			break;
 
 			case 9:
-			$currentBigMagnitude="mixion";
+			$currentBigMagnitude = "mixion";
 			break;
 
 			case 5:
-			$currentBigMagnitude="manix";
+			$currentBigMagnitude = "manix";
 			break;
 
 			default:
-			$currentBigMagnitude="";
+			$currentBigMagnitude = "";
 			break;
 		}
 
 		switch ($currentRing % 4)
 		{
 			case 0:
-				$currentMagnitude="mix";
+				$currentMagnitude = "mix";
 				break;
 
 			case 1:
-				$currentMagnitude="";
+				$currentMagnitude = "";
 				break;
 
 			case 2:
-				$currentMagnitude="dex";
+				$currentMagnitude = "dex";
 				break;
 
 			case 3:
-				$currentMagnitude="cenze";
+				$currentMagnitude = "cenze";
 				break;
 		}
 
 		switch ($currentBigMagnitude)
 		{
 			case "":
-				$bigMagnitudeSeparator="";
+				$bigMagnitudeSeparator = "";
 				break;
 
 			default:
-				$bigMagnitudeSeparator="-";
+				$bigMagnitudeSeparator = "-";
 				break;
 		}
 
 		switch ($currentMagnitude)
 		{
 			case "":
-				$magnitudeSeparator="";
+				$magnitudeSeparator = "";
 				break;
 
 			default:
-				$magnitudeSeparator="-";
+				$magnitudeSeparator = "-";
 				break;
 		}
 
 		if ( ($currentMagnitude != "") || ($currentBigMagnitude != "") )
 		{
-			$digitSeparator="-";
+			$digitSeparator = "-";
 		}
 		else
 		{
-			$digitSeparator="";
+			$digitSeparator = "";
 		}
 
-		$currentBibiDigitName=strtolower($GLOBALS['litt2dec2bibi'][hexdec(substr($hexNumber, $reverseCurrentRing, 1))]['litteral']);
+		$currentBibiDigitName = strtolower($GLOBALS['litt2dec2bibi'][hexdec(substr($hexNumber, $reverseCurrentRing, 1))]['litteral']);
 
 		if ($currentBibiDigitName == "ho")
 		{
-			$currentBibiDigitName="";
-			$digitSeparator="";
-			$currentMagnitude="";
-			$magnitudeSeparator="";
-			$bigMagnitudeSeparator="";
+			$currentBibiDigitName = "";
+			$digitSeparator = "";
+			$currentMagnitude = "";
+			$magnitudeSeparator = "";
+			$bigMagnitudeSeparator = "";
 		}
 
-		$fullLitteral=$fullLitteral . $currentBibiDigitName . $digitSeparator . $currentMagnitude . $magnitudeSeparator . $currentBigMagnitude . $bigMagnitudeSeparator;
+		$fullLitteral = $fullLitteral . $currentBibiDigitName . $digitSeparator . $currentMagnitude . $magnitudeSeparator . $currentBigMagnitude . $bigMagnitudeSeparator;
 	}
 
 	return $fullLitteral;
@@ -238,38 +238,38 @@ function dec2fullLitteral($decNumber)
 
 function hour2maxer($givenHour)
 {
-	$hours=substr($givenHour, 0, 2);
-	$minutes=substr($givenHour, 2, 2);
-	$seconds=substr($givenHour, 4, 2);
-	$numberOfSeconds=$hours*3600 + $minutes*60+ $seconds;
+	$hours = substr($givenHour, 0, 2);
+	$minutes = substr($givenHour, 2, 2);
+	$seconds = substr($givenHour, 4, 2);
+	$numberOfSeconds = $hours*3600 + $minutes*60+ $seconds;
 
-	$numberOfMinims=$numberOfSeconds*$GLOBALS['minimOnSecond'];
+	$numberOfMinims = $numberOfSeconds*$GLOBALS['minimOnSecond'];
 
-	$maxer=hex2bibi(dechex($numberOfMinims));
+	$maxer = hex2bibi(dechex($numberOfMinims));
 
 	switch (strlen(bibi2hex($maxer)))
 		{
 			case "3":
-				$maxer=hex2bibi("0").$maxer;
+				$maxer = hex2bibi("0").$maxer;
 				break;
 
 			case "2":
-				$maxer=hex2bibi("00").$maxer;
+				$maxer = hex2bibi("00").$maxer;
 				break;
 
 			case "1":
-				$maxer=hex2bibi("000").$maxer;
+				$maxer = hex2bibi("000").$maxer;
 				break;
 
 			case "0":
-				$maxer=hex2bibi("0000").$maxer;
+				$maxer = hex2bibi("0000").$maxer;
 				break;
 		}
 
 	return $maxer;
 }
 
-$epoch="1970";
+$epoch = "1970";
 
 function isGregorianYearBissextil($givenYear)
 {
@@ -285,26 +285,26 @@ function numberOfDaysSinceEpoch($givenYear)
 {
 	if ( $givenYear > $GLOBALS['epoch'] )
 	{
-		$beginingYear=$GLOBALS['epoch'];
-		$endYear=$givenYear;
+		$beginingYear = $GLOBALS['epoch'];
+		$endYear = $givenYear;
 	}
 	else
 	{
-		$endYear=$GLOBALS['epoch'];
-		$beginingYear=$givenYear;
+		$endYear = $GLOBALS['epoch'];
+		$beginingYear = $givenYear;
 	}
 
-	$totalNumberOfDays="0";
+	$totalNumberOfDays = "0";
 	for ($currentYear = $beginingYear ; $currentYear < $endYear ; $currentYear++)
 	{
 		switch (isGregorianYearBissextil($currentYear))
 		{
 			case true:
-			$totalNumberOfDays=$totalNumberOfDays+366;
+			$totalNumberOfDays = $totalNumberOfDays+366;
 			break;
 
 			case false:
-			$totalNumberOfDays=$totalNumberOfDays+365;
+			$totalNumberOfDays = $totalNumberOfDays+365;
 			break;
 		}
 	}
@@ -325,17 +325,17 @@ function numberOfDaysBetweanYears($firstYear,$secondYear)
 		$beginingYear = $secondYear;
 	}
 
-	$totalNumberOfDays="0";
+	$totalNumberOfDays = "0";
 	for ($currentYear = $beginingYear ; $currentYear < $endYear ; $currentYear++)
 	{
 		switch (isGregorianYearBissextil($currentYear))
 		{
 			case true:
-			$totalNumberOfDays=$totalNumberOfDays+366;
+			$totalNumberOfDays = $totalNumberOfDays+366;
 			break;
 
 			case false:
-			$totalNumberOfDays=$totalNumberOfDays+365;
+			$totalNumberOfDays = $totalNumberOfDays+365;
 			break;
 		}
 	}
@@ -407,38 +407,38 @@ function prolepticCal2bibiSolCal($givenYear, $givenMount, $givenDay)
 		switch (isBibiYearBissextil($currentYear))
 		{
 			case true:
-			$untreatedNumberOfDays=$untreatedNumberOfDays-366;
+			$untreatedNumberOfDays = $untreatedNumberOfDays-366;
 			break;
 
 			case false:
-			$untreatedNumberOfDays=$untreatedNumberOfDays-365;
+			$untreatedNumberOfDays = $untreatedNumberOfDays-365;
 			break;
 		}
 	}
 
-	$theBibiYear=$currentYear;
+	$theBibiYear = $currentYear;
 
 
 	for ($currentMount = 0 ; $untreatedNumberOfDays > 23; $currentMount++)
 	{
-		if ( ($currentMount=7) || ($currentMount=11) || ($currentMount=15) )
+		if ( ($currentMount = 7) || ($currentMount = 11) || ($currentMount = 15) )
 		{
-			$untreatedNumberOfDays=$untreatedNumberOfDays-22;
+			$untreatedNumberOfDays = $untreatedNumberOfDays-22;
 		}
-		elseif ( ($currentMount=0) || ($currentMount=1) || ($currentMount=2) || ($currentMount=4) || ($currentMount=5) || ($currentMount=6) || ($currentMount=8) || ($currentMount=9) || ($currentMount=10) || ($currentMount=12) || ($currentMount=13) || ($currentMount=14) )
+		elseif ( ($currentMount = 0) || ($currentMount = 1) || ($currentMount = 2) || ($currentMount = 4) || ($currentMount = 5) || ($currentMount = 6) || ($currentMount = 8) || ($currentMount = 9) || ($currentMount = 10) || ($currentMount = 12) || ($currentMount = 13) || ($currentMount = 14) )
 		{
-			$untreatedNumberOfDays=$untreatedNumberOfDays-23;
+			$untreatedNumberOfDays = $untreatedNumberOfDays-23;
 		}
 		else
 		{
 			switch (isBibiYearBissextil($givenYear))
 			{
 				case true:
-				$untreatedNumberOfDays=$untreatedNumberOfDays-22;
+				$untreatedNumberOfDays = $untreatedNumberOfDays-22;
 				break;
 
 				case false:
-				$untreatedNumberOfDays=$untreatedNumberOfDays-23;
+				$untreatedNumberOfDays = $untreatedNumberOfDays-23;
 				break;
 			}
 		}
