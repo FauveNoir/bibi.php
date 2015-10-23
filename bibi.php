@@ -19,6 +19,8 @@ $decimal2bibinaryCorrespondence = [
     "DO", "DA", "DE", "DI"
 ];
 
+$minimOnSecond=(16*16*16*16)/(24*60*60);
+
 //class constructNewCharacter
 //{
 	//public $litteral;
@@ -232,4 +234,37 @@ function bibi2fullLitteral($bibiNumber)
 function dec2fullLitteral($decNumber)
 {
 	return hex2fullLitteral(dechex($decNumber));
+}
+
+function hour2maxer($givenHour)
+{
+	$hours=substr($givenHour, 0, 2);
+	$minutes=substr($givenHour, 2, 2);
+	$seconds=substr($givenHour, 4, 2);
+	$numberOfSeconds=$hours*3600 + $minutes*60+ $seconds;
+
+	$numberOfMinims=$numberOfSeconds*$GLOBALS['minimOnSecond'];
+
+	$maxer=hex2bibi(dechex($numberOfMinims));
+
+	switch (strlen(bibi2hex($maxer)))
+		{
+			case "3":
+				$maxer=hex2bibi("0").$maxer;
+				break;
+
+			case "2":
+				$maxer=hex2bibi("00").$maxer;
+				break;
+
+			case "1":
+				$maxer=hex2bibi("000").$maxer;
+				break;
+
+			case "0":
+				$maxer=hex2bibi("0000").$maxer;
+				break;
+		}
+
+	return $maxer;
 }

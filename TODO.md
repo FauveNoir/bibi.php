@@ -5,8 +5,9 @@ Create following functions:
 	#- bibi2fullLitteral
 	#- hex2fullLitteralBibi
 	#- dec2fullLitteralBibi
-	- hour2maxer
+	#- hour2maxer
 	- maxer2hour
+	- iso86012maxer
 	- sexagestime2bibitime
 	- bibitime2sexagestime
 	- juliancalendar2dexregcalendar
