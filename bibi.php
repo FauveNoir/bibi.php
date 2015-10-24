@@ -268,3 +268,214 @@ function hour2maxer($givenHour)
 
 	return $maxer;
 }
+
+$epoch="1970";
+
+function isGregorianYearBissextil($givenYear)
+{
+	if( ( $givenYear%4 == 0 and $givenYear%100 != 0 ) or ( $givenYear%400 == 0 ) )
+	{
+		return true;
+	}
+
+	return false;
+}
+
+function numberOfDaysSinceEpoch($givenYear)
+{
+	if ( $givenYear > $GLOBALS['epoch'] )
+	{
+		$beginingYear=$GLOBALS['epoch'];
+		$endYear=$givenYear;
+	}
+	else
+	{
+		$endYear=$GLOBALS['epoch'];
+		$beginingYear=$givenYear;
+	}
+
+	$totalNumberOfDays="0";
+	for ($currentYear = $beginingYear ; $currentYear < $endYear ; $currentYear++)
+	{
+		switch (isGregorianYearBissextil($currentYear))
+		{
+			case true:
+			$totalNumberOfDays=$totalNumberOfDays+366;
+			break;
+
+			case false:
+			$totalNumberOfDays=$totalNumberOfDays+365;
+			break;
+		}
+	}
+
+	return $totalNumberOfDays;
+}
+
+function numberOfDaysBetweanYears($firstYear,$secondYear)
+{
+	if ( $firstYear <= $secondYear )
+	{
+		$beginingYear = $firstYear;
+		$endYear      = $secondYear;
+	}
+	else
+	{
+		$endYear      = $firstYear;
+		$beginingYear = $secondYear;
+	}
+
+	$totalNumberOfDays="0";
+	for ($currentYear = $beginingYear ; $currentYear < $endYear ; $currentYear++)
+	{
+		switch (isGregorianYearBissextil($currentYear))
+		{
+			case true:
+			$totalNumberOfDays=$totalNumberOfDays+366;
+			break;
+
+			case false:
+			$totalNumberOfDays=$totalNumberOfDays+365;
+			break;
+		}
+	}
+
+	return $totalNumberOfDays;
+}
+
+function numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay)
+{
+	$numberOfDaysSinceZero  = numberOfDaysBetweanYears("0",$givenYear);
+	if ( ($givenMount == 1) || ( $givenMount == 3) || ( $givenMount == 5) || ( $givenMount == 7) || ( $givenMount == 8) || ( $givenMount == 10) || ( $givenMount == 12) )
+	{
+		$numberOfDaysSinceZero = $numberOfDaysSinceZero+"31";
+	}
+	elseif ( ($givenMount == 4) || ( $givenMount == 6) || ( $givenMount == 9) || ( $givenMount == 11) )
+	{
+		$numberOfDaysSinceZero = $numberOfDaysSinceZero+"30";
+	}
+	else
+	{
+		switch (isGregorianYearBissextil($givenYear))
+		{
+			case true:
+			$numberOfDaysSinceZero = $numberOfDaysSinceZero+"29";
+			break;
+
+			case false:
+			$numberOfDaysSinceZero = $numberOfDaysSinceZero+"28";
+			break;
+		}
+	}
+
+	$numberOfDaysSinceZero  = $numberOfDaysSinceZero+$givenDay;
+
+	return $numberOfDaysSinceZero;
+}
+
+function prolepticCal2bibiRegCal($givenYear, $givenMount, $givenDay)
+{
+	$numberOfDaysSinceZero  = numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay);
+
+	$theBibiYear            = (int)($numberOfDaysSinceZero/512);
+	$theBibiMount           = (int)(($numberOfDaysSinceZero%512)/32);
+	$theBibiDay             = (int)(($numberOfDaysSinceZero%512)%32);
+
+	$theBibiDate            = dec2bibi($theBibiYear) . "-" . dec2bibi($theBibiMount) . "-" . dec2bibi($theBibiDay);
+
+	return $theBibiDate;
+}
+
+function isBibiYearBissextil($givenYear)
+{
+	if( ( $givenYear%4 == 0 and $givenYear%64 != 0 ) or ( $givenYear%256 == 0 ) )
+	{
+		return true;
+	}
+
+	return false;
+}
+
+function prolepticCal2bibiSolCal($givenYear, $givenMount, $givenDay)
+{
+	$numberOfDaysSinceZero = numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay);
+
+	$untreatedNumberOfDays = $numberOfDaysSinceZero;
+
+	for ($currentYear = 0 ; $untreatedNumberOfDays > 366; $currentYear++)
+	{
+		switch (isBibiYearBissextil($currentYear))
+		{
+			case true:
+			$untreatedNumberOfDays=$untreatedNumberOfDays-366;
+			break;
+
+			case false:
+			$untreatedNumberOfDays=$untreatedNumberOfDays-365;
+			break;
+		}
+	}
+
+	$theBibiYear=$currentYear;
+
+
+	for ($currentMount = 0 ; $untreatedNumberOfDays > 23; $currentMount++)
+	{
+		if ( ($currentMount=7) || ($currentMount=11) || ($currentMount=15) )
+		{
+			$untreatedNumberOfDays=$untreatedNumberOfDays-22;
+		}
+		elseif ( ($currentMount=0) || ($currentMount=1) || ($currentMount=2) || ($currentMount=4) || ($currentMount=5) || ($currentMount=6) || ($currentMount=8) || ($currentMount=9) || ($currentMount=10) || ($currentMount=12) || ($currentMount=13) || ($currentMount=14) )
+		{
+			$untreatedNumberOfDays=$untreatedNumberOfDays-23;
+		}
+		else
+		{
+			switch (isBibiYearBissextil($givenYear))
+			{
+				case true:
+				$untreatedNumberOfDays=$untreatedNumberOfDays-22;
+				break;
+
+				case false:
+				$untreatedNumberOfDays=$untreatedNumberOfDays-23;
+				break;
+			}
+		}
+	}
+
+	$theBibiMount = $currentMount;
+	$theBibiDay   = $untreatedNumberOfDays;
+
+	$theBibiDate  = dec2bibi($theBibiYear) . "-" . dec2bibi($theBibiMount) . "-" . dec2bibi($theBibiDay);
+
+	return $theBibiDate;
+}
+
+function iso86012ToBibiSol($givenDate)
+{
+	$isoYear = substr($givenDate, 0, 4);
+	$isoMont = substr($givenDate, 5, 2);
+	$isoDay  = substr($givenDate, 7, 2);
+
+	$isoTime = substr($givenDate, 11, 8);
+	$isoTime = str_replace(":","",$isoTime);
+
+	$bibiFullDate = prolepticCal2bibiSolCal($isoYear,$isoMont,$isoDay) . "." . hour2maxer($isoTime);
+
+	return $bibiFullDate;
+}
+
+function iso86012ToBibiReg($givenDate)
+{
+	$isoYear = substr($givenDate, 0, 4);
+	$isoMont = substr($givenDate, 5, 2);
+	$isoDay  = substr($givenDate, 7, 2);
+
+	$isoTime = substr($givenDate, 11, 8);
+	$isoTime = str_replace(":","",$isoTime);
+
+	$bibiFullDate = prolepticCal2bibiRegCal($isoYear,$isoMont,$isoDay) . "." . hour2maxer($isoTime);
+
+	return $bibiFullDate;
+}
