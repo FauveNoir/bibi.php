@@ -285,17 +285,17 @@ function numberOfDaysSinceEpoch($givenYear)
 {
 	if ( $givenYear > $GLOBALS['epoch'] )
 	{
-		$beginingYear = $GLOBALS['epoch'];
+		$beginningYear = $GLOBALS['epoch'];
 		$endYear = $givenYear;
 	}
 	else
 	{
 		$endYear = $GLOBALS['epoch'];
-		$beginingYear = $givenYear;
+		$beginningYear = $givenYear;
 	}
 
 	$totalNumberOfDays = "0";
-	for ($currentYear = $beginingYear ; $currentYear < $endYear ; $currentYear++)
+	for ($currentYear = $beginningYear ; $currentYear < $endYear ; $currentYear++)
 	{
 		switch (isGregorianYearBissextil($currentYear))
 		{
@@ -316,17 +316,17 @@ function numberOfDaysBetweanYears($firstYear,$secondYear)
 {
 	if ( $firstYear <= $secondYear )
 	{
-		$beginingYear = $firstYear;
+		$beginningYear = $firstYear;
 		$endYear      = $secondYear;
 	}
 	else
 	{
 		$endYear      = $firstYear;
-		$beginingYear = $secondYear;
+		$beginningYear = $secondYear;
 	}
 
 	$totalNumberOfDays = "0";
-	for ($currentYear = $beginingYear ; $currentYear < $endYear ; $currentYear++)
+	for ($currentYear = $beginningYear ; $currentYear < $endYear ; $currentYear++)
 	{
 		switch (isGregorianYearBissextil($currentYear))
 		{
