@@ -343,14 +343,14 @@ function numberOfDaysBetweanYears($firstYear,$secondYear)
 	return $totalNumberOfDays;
 }
 
-function numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay)
+function numberOfDaysBetwenZeroAndDate($givenYear, $givenMonth, $givenDay)
 {
 	$numberOfDaysSinceZero  = numberOfDaysBetweanYears("0",$givenYear);
-	if ( ($givenMount == 1) || ( $givenMount == 3) || ( $givenMount == 5) || ( $givenMount == 7) || ( $givenMount == 8) || ( $givenMount == 10) || ( $givenMount == 12) )
+	if ( ($givenMonth == 1) || ( $givenMonth == 3) || ( $givenMonth == 5) || ( $givenMonth == 7) || ( $givenMonth == 8) || ( $givenMonth == 10) || ( $givenMonth == 12) )
 	{
 		$numberOfDaysSinceZero = $numberOfDaysSinceZero+"31";
 	}
-	elseif ( ($givenMount == 4) || ( $givenMount == 6) || ( $givenMount == 9) || ( $givenMount == 11) )
+	elseif ( ($givenMonth == 4) || ( $givenMonth == 6) || ( $givenMonth == 9) || ( $givenMonth == 11) )
 	{
 		$numberOfDaysSinceZero = $numberOfDaysSinceZero+"30";
 	}
@@ -373,15 +373,15 @@ function numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay)
 	return $numberOfDaysSinceZero;
 }
 
-function prolepticCal2bibiRegCal($givenYear, $givenMount, $givenDay)
+function prolepticCal2bibiRegCal($givenYear, $givenMonth, $givenDay)
 {
-	$numberOfDaysSinceZero  = numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay);
+	$numberOfDaysSinceZero  = numberOfDaysBetwenZeroAndDate($givenYear, $givenMonth, $givenDay);
 
 	$theBibiYear            = (int)($numberOfDaysSinceZero/512);
-	$theBibiMount           = (int)(($numberOfDaysSinceZero%512)/32);
+	$theBibiMonth           = (int)(($numberOfDaysSinceZero%512)/32);
 	$theBibiDay             = (int)(($numberOfDaysSinceZero%512)%32);
 
-	$theBibiDate            = dec2bibi($theBibiYear) . "-" . dec2bibi($theBibiMount) . "-" . dec2bibi($theBibiDay);
+	$theBibiDate            = dec2bibi($theBibiYear) . "-" . dec2bibi($theBibiMonth) . "-" . dec2bibi($theBibiDay);
 
 	return $theBibiDate;
 }
@@ -396,9 +396,9 @@ function isBibiYearBissextil($givenYear)
 	return false;
 }
 
-function prolepticCal2bibiSolCal($givenYear, $givenMount, $givenDay)
+function prolepticCal2bibiSolCal($givenYear, $givenMonth, $givenDay)
 {
-	$numberOfDaysSinceZero = numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay);
+	$numberOfDaysSinceZero = numberOfDaysBetwenZeroAndDate($givenYear, $givenMonth, $givenDay);
 
 	$untreatedNumberOfDays = $numberOfDaysSinceZero;
 
@@ -419,13 +419,13 @@ function prolepticCal2bibiSolCal($givenYear, $givenMount, $givenDay)
 	$theBibiYear = $currentYear;
 
 
-	for ($currentMount == 0 ; $untreatedNumberOfDays > 23; $currentMount++)
+	for ($currentMonth == 0 ; $untreatedNumberOfDays > 23; $currentMonth++)
 	{
-		if ( ($currentMount == 7) || ($currentMount == 11) || ($currentMount == 15) )
+		if ( ($currentMonth == 7) || ($currentMonth == 11) || ($currentMonth == 15) )
 		{
 			$untreatedNumberOfDays = $untreatedNumberOfDays-22;
 		}
-		elseif ( ($currentMount == 0) || ($currentMount == 1) || ($currentMount == 2) || ($currentMount == 4) || ($currentMount == 5) || ($currentMount == 6) || ($currentMount == 8) || ($currentMount == 9) || ($currentMount == 10) || ($currentMount == 12) || ($currentMount == 13) || ($currentMount == 14) )
+		elseif ( ($currentMonth == 0) || ($currentMonth == 1) || ($currentMonth == 2) || ($currentMonth == 4) || ($currentMonth == 5) || ($currentMonth == 6) || ($currentMonth == 8) || ($currentMonth == 9) || ($currentMonth == 10) || ($currentMonth == 12) || ($currentMonth == 13) || ($currentMonth == 14) )
 		{
 			$untreatedNumberOfDays = $untreatedNumberOfDays-23;
 		}
@@ -444,10 +444,10 @@ function prolepticCal2bibiSolCal($givenYear, $givenMount, $givenDay)
 		}
 	}
 
-	$theBibiMount = $currentMount;
+	$theBibiMonth = $currentMonth;
 	$theBibiDay   = $untreatedNumberOfDays;
 
-	$theBibiDate  = dec2bibi($theBibiYear) . "-" . dec2bibi($theBibiMount) . "-" . dec2bibi($theBibiDay);
+	$theBibiDate  = dec2bibi($theBibiYear) . "-" . dec2bibi($theBibiMonth) . "-" . dec2bibi($theBibiDay);
 
 	return $theBibiDate;
 }
