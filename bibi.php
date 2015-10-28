@@ -419,13 +419,13 @@ function prolepticCal2bibiSolCal($givenYear, $givenMount, $givenDay)
 	$theBibiYear = $currentYear;
 
 
-	for ($currentMount = 0 ; $untreatedNumberOfDays > 23; $currentMount++)
+	for ($currentMount == 0 ; $untreatedNumberOfDays > 23; $currentMount++)
 	{
-		if ( ($currentMount = 7) || ($currentMount = 11) || ($currentMount = 15) )
+		if ( ($currentMount == 7) || ($currentMount == 11) || ($currentMount == 15) )
 		{
 			$untreatedNumberOfDays = $untreatedNumberOfDays-22;
 		}
-		elseif ( ($currentMount = 0) || ($currentMount = 1) || ($currentMount = 2) || ($currentMount = 4) || ($currentMount = 5) || ($currentMount = 6) || ($currentMount = 8) || ($currentMount = 9) || ($currentMount = 10) || ($currentMount = 12) || ($currentMount = 13) || ($currentMount = 14) )
+		elseif ( ($currentMount == 0) || ($currentMount == 1) || ($currentMount == 2) || ($currentMount == 4) || ($currentMount == 5) || ($currentMount == 6) || ($currentMount == 8) || ($currentMount == 9) || ($currentMount == 10) || ($currentMount == 12) || ($currentMount == 13) || ($currentMount == 14) )
 		{
 			$untreatedNumberOfDays = $untreatedNumberOfDays-23;
 		}
