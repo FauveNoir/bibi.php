@@ -9,10 +9,5 @@ Create following functions:
 	- maxer2hour
 	+ prolepticCal2bibiRegCal
 	+ prolepticCal2bibiSolCal
-	- iso86012maxer
 	- sexagestime2bibitime
 	- bibitime2sexagestime
-	- juliancalendar2dexregcalendar
-	- dexregcalendar2juliancalendar
-	- juliancalendar2dexsolarcalendar
-	- dexsolarcalendar2juliancalendar
