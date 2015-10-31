@@ -23,13 +23,13 @@ $minimOnSecond = (16*16*16*16)/(24*60*60);
 
 //class constructNewCharacter
 //{
-	//public $litteral;
+	//public $literal;
 	//public $decimal;
 	//public $character;
 
-	//function __construct ($litteral, $decimal, $character)
+	//function __construct ($literal, $decimal, $character)
 	//{
-		//$this->litteral  = $litteral;
+		//$this->literal  = $literal;
 		//$this->decimal   = $decimal;
 		//$this->character = $character;
 	//}
@@ -55,22 +55,22 @@ $minimOnSecond = (16*16*16*16)/(24*60*60);
 //];
 
 $litt2dec2bibi = [
-	[ 'litteral' => 'HO',  'decimal' => ' 0',  'character' => '󰀀' ],
-	[ 'litteral' => 'HA',  'decimal' => ' 1',  'character' => '󰀁' ],
-	[ 'litteral' => 'HE',  'decimal' => ' 2',  'character' => '󰀂' ],
-	[ 'litteral' => 'HI',  'decimal' => ' 3',  'character' => '󰀃' ],
-	[ 'litteral' => 'BO',  'decimal' => ' 4',  'character' => '󰀄' ],
-	[ 'litteral' => 'BA',  'decimal' => ' 5',  'character' => '󰀅' ],
-	[ 'litteral' => 'BE',  'decimal' => ' 6',  'character' => '󰀆' ],
-	[ 'litteral' => 'BI',  'decimal' => ' 7',  'character' => '󰀇' ],
-	[ 'litteral' => 'KO',  'decimal' => ' 8',  'character' => '󰀈' ],
-	[ 'litteral' => 'KA',  'decimal' => ' 9',  'character' => '󰀉' ],
-	[ 'litteral' => 'KE',  'decimal' => '10',  'character' => '󰀊' ],
-	[ 'litteral' => 'KI',  'decimal' => '11',  'character' => '󰀋' ],
-	[ 'litteral' => 'DO',  'decimal' => '12',  'character' => '󰀌' ],
-	[ 'litteral' => 'DA',  'decimal' => '13',  'character' => '󰀍' ],
-	[ 'litteral' => 'DE',  'decimal' => '14',  'character' => '󰀎' ],
-	[ 'litteral' => 'DI',  'decimal' => '15',  'character' => '󰀏' ]
+	[ 'literal' => 'HO',  'decimal' => ' 0',  'character' => '󰀀' ],
+	[ 'literal' => 'HA',  'decimal' => ' 1',  'character' => '󰀁' ],
+	[ 'literal' => 'HE',  'decimal' => ' 2',  'character' => '󰀂' ],
+	[ 'literal' => 'HI',  'decimal' => ' 3',  'character' => '󰀃' ],
+	[ 'literal' => 'BO',  'decimal' => ' 4',  'character' => '󰀄' ],
+	[ 'literal' => 'BA',  'decimal' => ' 5',  'character' => '󰀅' ],
+	[ 'literal' => 'BE',  'decimal' => ' 6',  'character' => '󰀆' ],
+	[ 'literal' => 'BI',  'decimal' => ' 7',  'character' => '󰀇' ],
+	[ 'literal' => 'KO',  'decimal' => ' 8',  'character' => '󰀈' ],
+	[ 'literal' => 'KA',  'decimal' => ' 9',  'character' => '󰀉' ],
+	[ 'literal' => 'KE',  'decimal' => '10',  'character' => '󰀊' ],
+	[ 'literal' => 'KI',  'decimal' => '11',  'character' => '󰀋' ],
+	[ 'literal' => 'DO',  'decimal' => '12',  'character' => '󰀌' ],
+	[ 'literal' => 'DA',  'decimal' => '13',  'character' => '󰀍' ],
+	[ 'literal' => 'DE',  'decimal' => '14',  'character' => '󰀎' ],
+	[ 'literal' => 'DI',  'decimal' => '15',  'character' => '󰀏' ]
 ];
 
 function hex2bibi($givenHexadecimalNumber)
@@ -120,7 +120,7 @@ function alpha2bibi($givenDigitSuit)
 	for ($currentDecDigit = 0; $currentDecDigit <= 15; $currentDecDigit++)
 	{
 		$currentBibiDigitChar = $GLOBALS['litt2dec2bibi'][$currentDecDigit]['character'];
-		$currentBibiDigitName = $GLOBALS['litt2dec2bibi'][$currentDecDigit]['litteral'];
+		$currentBibiDigitName = $GLOBALS['litt2dec2bibi'][$currentDecDigit]['literal'];
 
 		$bibinariesedNumber = str_replace($currentBibiDigitName, $currentBibiDigitChar ,$bibinariesedNumber);
 	}
@@ -130,11 +130,11 @@ function alpha2bibi($givenDigitSuit)
 }
 
 
-function hex2fullLitteral($hexNumber)
+function hex2fullliteral($hexNumber)
 {
 	$hexNumber = str_replace(" ","",$hexNumber);
 	$lengtOfNumber = iconv_strlen($hexNumber);
-	$fullLitteral = "";
+	$fullliteral = "";
 
 	for ($currentRing = $lengtOfNumber ; $currentRing > 0 ; $currentRing--)
 	{
@@ -209,7 +209,7 @@ function hex2fullLitteral($hexNumber)
 			$digitSeparator = "";
 		}
 
-		$currentBibiDigitName = strtolower($GLOBALS['litt2dec2bibi'][hexdec(substr($hexNumber, $reverseCurrentRing, 1))]['litteral']);
+		$currentBibiDigitName = strtolower($GLOBALS['litt2dec2bibi'][hexdec(substr($hexNumber, $reverseCurrentRing, 1))]['literal']);
 
 		if ($currentBibiDigitName == "ho")
 		{
@@ -220,20 +220,20 @@ function hex2fullLitteral($hexNumber)
 			$bigMagnitudeSeparator = "";
 		}
 
-		$fullLitteral = $fullLitteral . $currentBibiDigitName . $digitSeparator . $currentMagnitude . $magnitudeSeparator . $currentBigMagnitude . $bigMagnitudeSeparator;
+		$fullliteral = $fullliteral . $currentBibiDigitName . $digitSeparator . $currentMagnitude . $magnitudeSeparator . $currentBigMagnitude . $bigMagnitudeSeparator;
 	}
 
-	return $fullLitteral;
+	return $fullliteral;
 }
 
-function bibi2fullLitteral($bibiNumber)
+function bibi2fullliteral($bibiNumber)
 {
-	return hex2fullLitteral(bibi2hex($bibiNumber));
+	return hex2fullliteral(bibi2hex($bibiNumber));
 }
 
-function dec2fullLitteral($decNumber)
+function dec2fullliteral($decNumber)
 {
-	return hex2fullLitteral(dechex($decNumber));
+	return hex2fullliteral(dechex($decNumber));
 }
 
 function hour2maxer($givenHour)
@@ -285,17 +285,17 @@ function numberOfDaysSinceEpoch($givenYear)
 {
 	if ( $givenYear > $GLOBALS['epoch'] )
 	{
-		$beginingYear = $GLOBALS['epoch'];
+		$beginningYear = $GLOBALS['epoch'];
 		$endYear = $givenYear;
 	}
 	else
 	{
 		$endYear = $GLOBALS['epoch'];
-		$beginingYear = $givenYear;
+		$beginningYear = $givenYear;
 	}
 
 	$totalNumberOfDays = "0";
-	for ($currentYear = $beginingYear ; $currentYear < $endYear ; $currentYear++)
+	for ($currentYear = $beginningYear ; $currentYear < $endYear ; $currentYear++)
 	{
 		switch (isGregorianYearBissextil($currentYear))
 		{
@@ -316,17 +316,17 @@ function numberOfDaysBetweanYears($firstYear,$secondYear)
 {
 	if ( $firstYear <= $secondYear )
 	{
-		$beginingYear = $firstYear;
+		$beginningYear = $firstYear;
 		$endYear      = $secondYear;
 	}
 	else
 	{
 		$endYear      = $firstYear;
-		$beginingYear = $secondYear;
+		$beginningYear = $secondYear;
 	}
 
 	$totalNumberOfDays = "0";
-	for ($currentYear = $beginingYear ; $currentYear < $endYear ; $currentYear++)
+	for ($currentYear = $beginningYear ; $currentYear < $endYear ; $currentYear++)
 	{
 		switch (isGregorianYearBissextil($currentYear))
 		{
@@ -343,14 +343,14 @@ function numberOfDaysBetweanYears($firstYear,$secondYear)
 	return $totalNumberOfDays;
 }
 
-function numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay)
+function numberOfDaysBetwenZeroAndDate($givenYear, $givenMonth, $givenDay)
 {
 	$numberOfDaysSinceZero  = numberOfDaysBetweanYears("0",$givenYear);
-	if ( ($givenMount == 1) || ( $givenMount == 3) || ( $givenMount == 5) || ( $givenMount == 7) || ( $givenMount == 8) || ( $givenMount == 10) || ( $givenMount == 12) )
+	if ( ($givenMonth == 1) || ( $givenMonth == 3) || ( $givenMonth == 5) || ( $givenMonth == 7) || ( $givenMonth == 8) || ( $givenMonth == 10) || ( $givenMonth == 12) )
 	{
 		$numberOfDaysSinceZero = $numberOfDaysSinceZero+"31";
 	}
-	elseif ( ($givenMount == 4) || ( $givenMount == 6) || ( $givenMount == 9) || ( $givenMount == 11) )
+	elseif ( ($givenMonth == 4) || ( $givenMonth == 6) || ( $givenMonth == 9) || ( $givenMonth == 11) )
 	{
 		$numberOfDaysSinceZero = $numberOfDaysSinceZero+"30";
 	}
@@ -373,15 +373,15 @@ function numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay)
 	return $numberOfDaysSinceZero;
 }
 
-function prolepticCal2bibiRegCal($givenYear, $givenMount, $givenDay)
+function prolepticCal2bibiRegCal($givenYear, $givenMonth, $givenDay)
 {
-	$numberOfDaysSinceZero  = numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay);
+	$numberOfDaysSinceZero  = numberOfDaysBetwenZeroAndDate($givenYear, $givenMonth, $givenDay);
 
 	$theBibiYear            = (int)($numberOfDaysSinceZero/512);
-	$theBibiMount           = (int)(($numberOfDaysSinceZero%512)/32);
+	$theBibiMonth           = (int)(($numberOfDaysSinceZero%512)/32);
 	$theBibiDay             = (int)(($numberOfDaysSinceZero%512)%32);
 
-	$theBibiDate            = dec2bibi($theBibiYear) . "-" . dec2bibi($theBibiMount) . "-" . dec2bibi($theBibiDay);
+	$theBibiDate            = dec2bibi($theBibiYear) . "-" . dec2bibi($theBibiMonth) . "-" . dec2bibi($theBibiDay);
 
 	return $theBibiDate;
 }
@@ -396,9 +396,9 @@ function isBibiYearBissextil($givenYear)
 	return false;
 }
 
-function prolepticCal2bibiSolCal($givenYear, $givenMount, $givenDay)
+function prolepticCal2bibiSolCal($givenYear, $givenMonth, $givenDay)
 {
-	$numberOfDaysSinceZero = numberOfDaysBetwenZeroAndDate($givenYear, $givenMount, $givenDay);
+	$numberOfDaysSinceZero = numberOfDaysBetwenZeroAndDate($givenYear, $givenMonth, $givenDay);
 
 	$untreatedNumberOfDays = $numberOfDaysSinceZero;
 
@@ -419,13 +419,13 @@ function prolepticCal2bibiSolCal($givenYear, $givenMount, $givenDay)
 	$theBibiYear = $currentYear;
 
 
-	for ($currentMount = 0 ; $untreatedNumberOfDays > 23; $currentMount++)
+	for ($currentMonth == 0 ; $untreatedNumberOfDays > 23; $currentMonth++)
 	{
-		if ( ($currentMount = 7) || ($currentMount = 11) || ($currentMount = 15) )
+		if ( ($currentMonth == 7) || ($currentMonth == 11) || ($currentMonth == 15) )
 		{
 			$untreatedNumberOfDays = $untreatedNumberOfDays-22;
 		}
-		elseif ( ($currentMount = 0) || ($currentMount = 1) || ($currentMount = 2) || ($currentMount = 4) || ($currentMount = 5) || ($currentMount = 6) || ($currentMount = 8) || ($currentMount = 9) || ($currentMount = 10) || ($currentMount = 12) || ($currentMount = 13) || ($currentMount = 14) )
+		elseif ( ($currentMonth == 0) || ($currentMonth == 1) || ($currentMonth == 2) || ($currentMonth == 4) || ($currentMonth == 5) || ($currentMonth == 6) || ($currentMonth == 8) || ($currentMonth == 9) || ($currentMonth == 10) || ($currentMonth == 12) || ($currentMonth == 13) || ($currentMonth == 14) )
 		{
 			$untreatedNumberOfDays = $untreatedNumberOfDays-23;
 		}
@@ -444,10 +444,10 @@ function prolepticCal2bibiSolCal($givenYear, $givenMount, $givenDay)
 		}
 	}
 
-	$theBibiMount = $currentMount;
+	$theBibiMonth = $currentMonth;
 	$theBibiDay   = $untreatedNumberOfDays;
 
-	$theBibiDate  = dec2bibi($theBibiYear) . "-" . dec2bibi($theBibiMount) . "-" . dec2bibi($theBibiDay);
+	$theBibiDate  = dec2bibi($theBibiYear) . "-" . dec2bibi($theBibiMonth) . "-" . dec2bibi($theBibiDay);
 
 	return $theBibiDate;
 }
