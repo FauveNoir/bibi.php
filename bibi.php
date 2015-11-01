@@ -455,13 +455,13 @@ function prolepticCalToBibiSolCal($givenYear, $givenMonth, $givenDay)
 function iso86012ToBibiSol($givenDate)
 {
 	$isoYear = substr($givenDate, 0, 4);
-	$isoMont = substr($givenDate, 5, 2);
+	$isoMonth = substr($givenDate, 5, 2);
 	$isoDay  = substr($givenDate, 7, 2);
 
 	$isoTime = substr($givenDate, 11, 8);
 	$isoTime = str_replace(":","",$isoTime);
 
-	$bibiFullDate = prolepticCalToBibiSolCal($isoYear,$isoMont,$isoDay) . "." . hourToMaxer($isoTime);
+	$bibiFullDate = prolepticCalToBibiSolCal($isoYear,$isoMonth,$isoDay) . "." . hourToMaxer($isoTime);
 
 	return $bibiFullDate;
 }
@@ -469,13 +469,13 @@ function iso86012ToBibiSol($givenDate)
 function iso86012ToBibiReg($givenDate)
 {
 	$isoYear = substr($givenDate, 0, 4);
-	$isoMont = substr($givenDate, 5, 2);
+	$isoMonth = substr($givenDate, 5, 2);
 	$isoDay  = substr($givenDate, 7, 2);
 
 	$isoTime = substr($givenDate, 11, 8);
 	$isoTime = str_replace(":","",$isoTime);
 
-	$bibiFullDate = prolepticCalToBibiRegCal($isoYear,$isoMont,$isoDay) . "." . hourToMaxer($isoTime);
+	$bibiFullDate = prolepticCalToBibiRegCal($isoYear,$isoMonth,$isoDay) . "." . hourToMaxer($isoTime);
 
 	return $bibiFullDate;
 }
