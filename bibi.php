@@ -12,7 +12,7 @@
  *
  */
 
-$decimalTobibinaryCorrespondence = [
+$decimalToBibinaryCorrespondence = [
     "HO", "HA", "HE", "HI",
     "BO", "BA", "BE", "BI",
     "KO", "KA", "KE", "KI",
@@ -35,7 +35,7 @@ $minimOnSecond = (16*16*16*16)/(24*60*60);
 	//}
 //}
 
-//$litt2decimal2bibi = [
+//$litt2decimalToBibi = [
 	//new constructNewCharacter("HO",  0, "󰀀"),
 	//new constructNewCharacter("HA",  1, "󰀁"),
 	//new constructNewCharacter("HE",  2, "󰀂"),
@@ -54,7 +54,7 @@ $minimOnSecond = (16*16*16*16)/(24*60*60);
 	//new constructNewCharacter("DI", 15, "󰀏"),
 //];
 
-$littTodecimalTobibi = [
+$littToDecimalToBibi = [
 	[ 'literal' => 'HO',  'decimal' => ' 0',  'character' => '󰀀' ],
 	[ 'literal' => 'HA',  'decimal' => ' 1',  'character' => '󰀁' ],
 	[ 'literal' => 'HE',  'decimal' => ' 2',  'character' => '󰀂' ],
@@ -73,14 +73,14 @@ $littTodecimalTobibi = [
 	[ 'literal' => 'DI',  'decimal' => '15',  'character' => '󰀏' ]
 ];
 
-function hexTobibi($givenHexadecimalNumber)
+function hexToBibi($givenHexadecimalNumber)
 {
 	$bibinariesedNumber = strtolower($givenHexadecimalNumber);
 
-	for ($currentdecimalDigit = 0; $currentdecimalDigit <= 15; $currentdecimalDigit++)
+	for ($currentDecimalDigit = 0; $currentDecimalDigit <= 15; $currentDecimalDigit++)
 	{
-		$currentHexDigit = dechex($currentdecimalDigit);
-		$currentBibiChar = $GLOBALS['littTodecimalTobibi'][$currentdecimalDigit]['character'];
+		$currentHexDigit = dechex($currentDecimalDigit);
+		$currentBibiChar = $GLOBALS['littToDecimalToBibi'][$currentDecimalDigit]['character'];
 
 		$bibinariesedNumber = str_replace($currentHexDigit, $currentBibiChar ,$bibinariesedNumber);
 	}
@@ -89,14 +89,14 @@ function hexTobibi($givenHexadecimalNumber)
 	return $bibinariesedNumber;
 }
 
-function bibiTohex($givenBibiNumber)
+function bibiToHex($givenBibiNumber)
 {
 	$hexadecimalisedNumber = strtolower($givenBibiNumber);
 
-	for ($currentdecimalDigit = 0; $currentdecimalDigit <= 15; $currentdecimalDigit++)
+	for ($currentDecimalDigit = 0; $currentDecimalDigit <= 15; $currentDecimalDigit++)
 	{
-		$currentHexDigit = dechex($currentdecimalDigit);
-		$currentBibiChar = $GLOBALS['littTodecimalTobibi'][$currentdecimalDigit]['character'];
+		$currentHexDigit = dechex($currentDecimalDigit);
+		$currentBibiChar = $GLOBALS['littToDecimalToBibi'][$currentDecimalDigit]['character'];
 
 		$hexadecimalisedNumber = str_replace($currentBibiChar, $currentHexDigit, $hexadecimalisedNumber);
 	}
@@ -105,22 +105,22 @@ function bibiTohex($givenBibiNumber)
 	return $hexadecimalisedNumber;
 }
 
-function decimalTobibi($givenDecimalNumber)
+function decimalToBibi($givenDecimalNumber)
 {
-	$intermediateNumber = hexTobibi(dechex($givenDecimalNumber));
+	$intermediateNumber = hexToBibi(dechex($givenDecimalNumber));
 
 	return $intermediateNumber;
 }
 
 
-function alphaTobibi($givenDigitSuit)
+function alphaToBibi($givenDigitSuit)
 {
 	$bibinariesedNumber = strtoupper($givenDigitSuit);
 
-	for ($currentdecimalDigit = 0; $currentdecimalDigit <= 15; $currentdecimalDigit++)
+	for ($currentDecimalDigit = 0; $currentDecimalDigit <= 15; $currentDecimalDigit++)
 	{
-		$currentBibiDigitChar = $GLOBALS['littTodecimalTobibi'][$currentdecimalDigit]['character'];
-		$currentBibiDigitName = $GLOBALS['littTodecimalTobibi'][$currentdecimalDigit]['literal'];
+		$currentBibiDigitChar = $GLOBALS['littToDecimalToBibi'][$currentDecimalDigit]['character'];
+		$currentBibiDigitName = $GLOBALS['littToDecimalToBibi'][$currentDecimalDigit]['literal'];
 
 		$bibinariesedNumber = str_replace($currentBibiDigitName, $currentBibiDigitChar ,$bibinariesedNumber);
 	}
@@ -130,11 +130,11 @@ function alphaTobibi($givenDigitSuit)
 }
 
 
-function hexTofullliteral($hexNumber)
+function hexToFullLiteral($hexNumber)
 {
 	$hexNumber = str_replace(" ","",$hexNumber);
 	$lengtOfNumber = iconv_strlen($hexNumber);
-	$fullliteral = "";
+	$fullLiteral = "";
 
 	for ($currentRing = $lengtOfNumber ; $currentRing > 0 ; $currentRing--)
 	{
@@ -209,7 +209,7 @@ function hexTofullliteral($hexNumber)
 			$digitSeparator = "";
 		}
 
-		$currentBibiDigitName = strtolower($GLOBALS['littTodecimalTobibi'][hexdec(substr($hexNumber, $reverseCurrentRing, 1))]['literal']);
+		$currentBibiDigitName = strtolower($GLOBALS['littToDecimalToBibi'][hexdec(substr($hexNumber, $reverseCurrentRing, 1))]['literal']);
 
 		if ($currentBibiDigitName == "ho")
 		{
@@ -220,23 +220,23 @@ function hexTofullliteral($hexNumber)
 			$bigMagnitudeSeparator = "";
 		}
 
-		$fullliteral = $fullliteral . $currentBibiDigitName . $digitSeparator . $currentMagnitude . $magnitudeSeparator . $currentBigMagnitude . $bigMagnitudeSeparator;
+		$fullLiteral = $fullLiteral . $currentBibiDigitName . $digitSeparator . $currentMagnitude . $magnitudeSeparator . $currentBigMagnitude . $bigMagnitudeSeparator;
 	}
 
-	return $fullliteral;
+	return $fullLiteral;
 }
 
-function bibiTofullliteral($bibiNumber)
+function bibiToFullLiteral($bibiNumber)
 {
-	return hexTofullliteral(bibiTohex($bibiNumber));
+	return hexToFullLiteral(bibiToHex($bibiNumber));
 }
 
-function decimalTofullliteral($decimalNumber)
+function decimalToFullLiteral($decimalNumber)
 {
-	return hexTofullliteral(dechex($decimalNumber));
+	return hexToFullLiteral(dechex($decimalNumber));
 }
 
-function hourTomaxer($givenHour)
+function hourToMaxer($givenHour)
 {
 	$hours = substr($givenHour, 0, 2);
 	$minutes = substr($givenHour, 2, 2);
@@ -245,24 +245,24 @@ function hourTomaxer($givenHour)
 
 	$numberOfMinims = $numberOfSeconds*$GLOBALS['minimOnSecond'];
 
-	$maxer = hexTobibi(dechex($numberOfMinims));
+	$maxer = hexToBibi(dechex($numberOfMinims));
 
-	switch (strlen(bibiTohex($maxer)))
+	switch (strlen(bibiToHex($maxer)))
 		{
 			case "3":
-				$maxer = hexTobibi("0").$maxer;
+				$maxer = hexToBibi("0").$maxer;
 				break;
 
 			case "2":
-				$maxer = hexTobibi("00").$maxer;
+				$maxer = hexToBibi("00").$maxer;
 				break;
 
 			case "1":
-				$maxer = hexTobibi("000").$maxer;
+				$maxer = hexToBibi("000").$maxer;
 				break;
 
 			case "0":
-				$maxer = hexTobibi("0000").$maxer;
+				$maxer = hexToBibi("0000").$maxer;
 				break;
 		}
 
@@ -373,7 +373,7 @@ function numberOfDaysBetwenZeroAndDate($givenYear, $givenMonth, $givenDay)
 	return $numberOfDaysSinceZero;
 }
 
-function prolepticCalTobibiRegCal($givenYear, $givenMonth, $givenDay)
+function prolepticCalToBibiRegCal($givenYear, $givenMonth, $givenDay)
 {
 	$numberOfDaysSinceZero  = numberOfDaysBetwenZeroAndDate($givenYear, $givenMonth, $givenDay);
 
@@ -381,7 +381,7 @@ function prolepticCalTobibiRegCal($givenYear, $givenMonth, $givenDay)
 	$theBibiMonth           = (int)(($numberOfDaysSinceZero%512)/32);
 	$theBibiDay             = (int)(($numberOfDaysSinceZero%512)%32);
 
-	$theBibiDate            = decimalTobibi($theBibiYear) . "-" . decimalTobibi($theBibiMonth) . "-" . decimalTobibi($theBibiDay);
+	$theBibiDate            = decimalToBibi($theBibiYear) . "-" . decimalToBibi($theBibiMonth) . "-" . decimalToBibi($theBibiDay);
 
 	return $theBibiDate;
 }
@@ -396,7 +396,7 @@ function isBibiYearBissextil($givenYear)
 	return false;
 }
 
-function prolepticCalTobibiSolCal($givenYear, $givenMonth, $givenDay)
+function prolepticCalToBibiSolCal($givenYear, $givenMonth, $givenDay)
 {
 	$numberOfDaysSinceZero = numberOfDaysBetwenZeroAndDate($givenYear, $givenMonth, $givenDay);
 
@@ -447,7 +447,7 @@ function prolepticCalTobibiSolCal($givenYear, $givenMonth, $givenDay)
 	$theBibiMonth = $currentMonth;
 	$theBibiDay   = $untreatedNumberOfDays;
 
-	$theBibiDate  = decimalTobibi($theBibiYear) . "-" . decimalTobibi($theBibiMonth) . "-" . decimalTobibi($theBibiDay);
+	$theBibiDate  = decimalToBibi($theBibiYear) . "-" . decimalToBibi($theBibiMonth) . "-" . decimalToBibi($theBibiDay);
 
 	return $theBibiDate;
 }
@@ -461,7 +461,7 @@ function iso86012ToBibiSol($givenDate)
 	$isoTime = substr($givenDate, 11, 8);
 	$isoTime = str_replace(":","",$isoTime);
 
-	$bibiFullDate = prolepticCalTobibiSolCal($isoYear,$isoMont,$isoDay) . "." . hourTomaxer($isoTime);
+	$bibiFullDate = prolepticCalToBibiSolCal($isoYear,$isoMont,$isoDay) . "." . hourToMaxer($isoTime);
 
 	return $bibiFullDate;
 }
@@ -475,7 +475,7 @@ function iso86012ToBibiReg($givenDate)
 	$isoTime = substr($givenDate, 11, 8);
 	$isoTime = str_replace(":","",$isoTime);
 
-	$bibiFullDate = prolepticCalTobibiRegCal($isoYear,$isoMont,$isoDay) . "." . hourTomaxer($isoTime);
+	$bibiFullDate = prolepticCalToBibiRegCal($isoYear,$isoMont,$isoDay) . "." . hourToMaxer($isoTime);
 
 	return $bibiFullDate;
 }
