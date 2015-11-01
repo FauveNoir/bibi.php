@@ -12,7 +12,7 @@
  *
  */
 
-$decimal2bibinaryCorrespondence = [
+$decimalTobibinaryCorrespondence = [
     "HO", "HA", "HE", "HI",
     "BO", "BA", "BE", "BI",
     "KO", "KA", "KE", "KI",
