@@ -1,0 +1,16 @@
+{
+    "name": "fauvenoir/bibi",
+    "description": "Bibi-binary and other formats convert library.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fauve",
+            "email": "contact@taniere.info"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "~5.0"
+    }
+}
+
